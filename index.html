@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.2.3/milligram.min.css">
     <title>Auctions</title>
-    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="index.js" type="module"></script>
 </head>
 <body class="container" style="padding-top: 3%;">
     <h4 style="text-align: center;">Blind Auction</h4> 
@@ -15,7 +16,7 @@
     <div class="row">
       <div class="column">
         <label>Beneficiary</label>
-        <blockquote><p><em id="beneficiary">Loading..</em><br /><br /></p></blockquote>
+        <blockquote><p><em id="beneficiary"></em><br /><br /></p></blockquote>
       </div>
       <div class="column">
         <label>Timeleft</label>
@@ -23,12 +24,12 @@
       </div>
       <div class="column">
         <label>Highest Bidder</label>
-        <blockquote><p><em><span id="highestBidder"></span><br />
-        <span id="highestBid"></span>Loading...</em></p></blockquote>
+        <blockquote><p><em><span id="highestBidder">Loading...</span><br />
+        </em></p></blockquote>
       </div>
       <div class="column">
         <label>Highest Bid</label>
-        <blockquote><p><em><span id="raised">Loading..</span><br /></em></p></blockquote>
+        <blockquote><p><em><span id="highestBid">Loading..</span><br /></em></p></blockquote>
       </div>
       <div class="column">
         <label>Your Account<label>
