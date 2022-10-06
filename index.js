@@ -11,8 +11,8 @@ function sayHi() {
     .call()
     .then(function (result) {
       const addressStart = result.substring(0, 5),
-       addressEnd = result.substring(result.length - 4),
-       newAddress = addressStart + "..." + addressEnd;
+        addressEnd = result.substring(result.length - 4),
+        newAddress = addressStart + "..." + addressEnd;
       document.getElementById("beneficiary").innerText = newAddress;
     });
   MyContract.methods
