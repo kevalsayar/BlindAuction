@@ -6,35 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.2.3/milligram.min.css">
     <title>Auctions</title>
-    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-    <script src="index.js" type="module"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
 </head>
 <body class="container" style="padding-top: 3%;">
     <h4 style="text-align: center;">Blind Auction</h4> 
     <hr />
-
     <div class="row">
       <div class="column">
-        <label>Beneficiary</label>
-        <blockquote><p><em id="beneficiary"></em><br /><br /></p></blockquote>
+        <label>Bidding ends in</label>
+        <blockquote><p><em id="timeleftforbidding">Loading..</em><br /></p></blockquote>
       </div>
+
       <div class="column">
-        <label>Timeleft</label>
-        <blockquote><p><em id="timeleft">Loading..</em><br /></p></blockquote>
+        <label>Reveal ends in</label>
+        <blockquote><p><em id="timeleftforreveal">Loading...</em><br /></p></blockquote>
       </div>
-      <div class="column">
+
+      <div class="column" id="highestBidder" style="display: none;">
         <label>Highest Bidder</label>
-        <blockquote><p><em><span id="highestBidder">Loading...</span><br />
-        </em></p></blockquote>
+        <blockquote><p><em id="showHighestBidder">Loading...</em><br /></p></blockquote>
       </div>
-      <div class="column">
+
+      <div class="column" id="highestBid" style="display: none;">
         <label>Highest Bid</label>
-        <blockquote><p><em><span id="highestBid">Loading..</span><br /></em></p></blockquote>
+        <blockquote><p><em id="showHighestBid">Loading...</em><br /></p></blockquote>
       </div>
+
       <div class="column">
-        <label>Your Account<label>
-        <blockquote><p><em id="accountAddress">Loading..</em><br /><br /></p></blockquote>
+        <label>Account Address<label>
+        <blockquote><p><em id="accountAddress">Loading..</em><br /></p></blockquote>
       </div>
+
       <div class="column">
         <label>Balance</label>
         <blockquote><p><em id="accountBalance">Loading..</em><br /></p></blockquote>
@@ -42,41 +44,54 @@
     </div>
 
     <hr />
+    <div class="row" style="justify-content: center; display: none;">
+      <button id="connectToMetamask">Connect to Metamask</button>
+    </div>
 
-    <div class="row">
+    <div class="row" id="bidAndSecretKey" style="display: none;">
         <div class="column column-25">
             <label>Bid Value</label>
-            <input type="number" id="bidAmount" placeholder="Bid Value">
+            <input type="number" id="bidValue" placeholder="Bid Value in ETH">
         </div>
+
         <div class="column column-25">
             <label>Secret Key</label>
-            <input type="number" id="bidAmount" placeholder="Secret Key">
+            <input type="number" id="secretKey" placeholder="Secret Key">
         </div>
+
         <div class="column column-25">
           <label><br /></label>
-          <button id="makeBid" disabled>Transact</button>
-      </div>
+          <button id="transact">Transact</button>
+        </div>
     </div>
 
-    <hr />
-
-    <div class="row">
-        <!-- <div class="column column-33">
-          <label>From Account</label>
-          <input type="text" id="bidderAddress" placeholder="Wallet Address" disabled>
-        </div> -->
+    <div class="row" id="deposit" style="display: none;">
         <div class="column column-25">
           <label>Bid Amount</label>
-          <input type="number" id="bidAmount" placeholder="Enter bid" disabled>
+          <input type="number" id="bidAmount" placeholder="Enter bid in ETH">
         </div>
+
         <div class="column column-25">
           <label><br /></label>
-          <button id="makeBid" disabled>Bid</button>
+          <button id="makeBid">Bid</button>
         </div>
     </div>
-      <hr />
-      <!-- <button id="endAuction" disabled>End Auction</button> -->
-      <br /><br />
-      <div id="response"></div>
+    <div class="row" id="revealDiv" style="display: none;">
+      <div class="column column-25">
+        <label>Reveal Bid</label>
+        <input type="number" id="bidRevealValue" placeholder="Enter bid value" >
+      </div>
+
+      <div class="column column-25">
+        <label><br /></label>
+        <input type="number" id="bidRevealSecretKey" placeholder="Enter secret key" >
+      </div>
+
+      <div class="column column-25">
+        <label><br /></label>
+        <button id="bidReveal">Reveal</button>
+      </div>
+    </div>
+  <script src="index.js" type="module"></script>
 </body>
 </html>
