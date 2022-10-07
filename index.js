@@ -26,7 +26,7 @@ const snackBarGen = (message) => {
 function revealBid() {
   const signer = provider.getSigner();
   const MyContract = new ethers.Contract(
-    "0xC31fFCBD8E600969A03E7CAF6d539cBd2499fa38",
+    "0xB627D1F3Dee030a0ec56A571272C83F486728bD1",
     blindAbi,
     signer
   );
@@ -36,6 +36,7 @@ function revealBid() {
   MyContract.reveal([bidRevealValue], [bidRevealSecretKey]).then(
     async function (result) {
       if ((await result.wait()).status === 1) {
+        document.getElementById("revealDiv").style.display = "none";
         snackBarGen("Bid Revealed Successfully!");
       } else {
         snackBarGen("Please try again!");
@@ -47,7 +48,7 @@ function revealBid() {
 function transact() {
   const signer = provider.getSigner();
   const MyContract = new ethers.Contract(
-    "0xC31fFCBD8E600969A03E7CAF6d539cBd2499fa38",
+    "0xB627D1F3Dee030a0ec56A571272C83F486728bD1",
     blindAbi,
     signer
   );
@@ -87,7 +88,7 @@ async function initializeData() {
       auctionDetails.style.display = "flex";
       const signer = provider.getSigner();
       const MyContract = new ethers.Contract(
-        "0xC31fFCBD8E600969A03E7CAF6d539cBd2499fa38",
+        "0xB627D1F3Dee030a0ec56A571272C83F486728bD1",
         blindAbi,
         signer
       );
@@ -138,7 +139,7 @@ async function initializeData() {
               document.getElementById("highestBidder").style.display = "block";
               document.getElementById("highestBid").style.display = "block";
               var countDownDate = new Date(result * 1000).getTime();
-              var x = setInterval(function () {
+              var x = setInterval(async function () {
                 var now = new Date().getTime();
                 var distance = countDownDate - now;
                 if (distance < 0) {
@@ -146,6 +147,9 @@ async function initializeData() {
                   document.getElementById("timeleftforreveal").innerHTML =
                     "Reveal Done!";
                   document.getElementById("revealDiv").style.display = "none";
+                  document.getElementById(
+                    "auctionWinner"
+                  ).innerText = `The winner is ${await MyContract.highestBidder()}. Congratulations!`;
                 } else {
                   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
                   var hours = Math.floor(
