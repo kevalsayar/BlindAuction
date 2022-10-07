@@ -1,4 +1,4 @@
-import blindAbi from "./contractabi/blindabi.json" assert { type: "json" };
+import blindAbi from "../contractabi/blindabi.json" assert { type: "json" };
 document.addEventListener("DOMContentLoaded", initializeData);
 const connectToMetaMask = document.getElementById("connectToMetamask");
 connectToMetaMask.addEventListener("click", connectToMetamask);
@@ -26,7 +26,7 @@ const snackBarGen = (message) => {
 function revealBid() {
   const signer = provider.getSigner();
   const MyContract = new ethers.Contract(
-    "0xB627D1F3Dee030a0ec56A571272C83F486728bD1",
+    "0xFaADEb2e8d39049232aA401f4dCb9DDea462fE23",
     blindAbi,
     signer
   );
@@ -48,7 +48,7 @@ function revealBid() {
 function transact() {
   const signer = provider.getSigner();
   const MyContract = new ethers.Contract(
-    "0xB627D1F3Dee030a0ec56A571272C83F486728bD1",
+    "0xFaADEb2e8d39049232aA401f4dCb9DDea462fE23",
     blindAbi,
     signer
   );
@@ -88,7 +88,7 @@ async function initializeData() {
       auctionDetails.style.display = "flex";
       const signer = provider.getSigner();
       const MyContract = new ethers.Contract(
-        "0xB627D1F3Dee030a0ec56A571272C83F486728bD1",
+        "0xFaADEb2e8d39049232aA401f4dCb9DDea462fE23",
         blindAbi,
         signer
       );
