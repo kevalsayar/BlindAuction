@@ -26,7 +26,7 @@ const snackBarGen = (message) => {
 function revealBid() {
   const signer = provider.getSigner();
   const MyContract = new ethers.Contract(
-    "0xC4B7B084780f9AFDdFEed0D955Bad0dDA6a397D4",
+    "0xC31fFCBD8E600969A03E7CAF6d539cBd2499fa38",
     blindAbi,
     signer
   );
@@ -47,7 +47,7 @@ function revealBid() {
 function transact() {
   const signer = provider.getSigner();
   const MyContract = new ethers.Contract(
-    "0xC4B7B084780f9AFDdFEed0D955Bad0dDA6a397D4",
+    "0xC31fFCBD8E600969A03E7CAF6d539cBd2499fa38",
     blindAbi,
     signer
   );
@@ -87,7 +87,7 @@ async function initializeData() {
       auctionDetails.style.display = "flex";
       const signer = provider.getSigner();
       const MyContract = new ethers.Contract(
-        "0xC4B7B084780f9AFDdFEed0D955Bad0dDA6a397D4",
+        "0xC31fFCBD8E600969A03E7CAF6d539cBd2499fa38",
         blindAbi,
         signer
       );
